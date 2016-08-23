@@ -139,8 +139,7 @@ TEXT runtime·madvise(SB),NOSPLIT,$0
 	MOVW	flags+16(FP), R2
 	MOVW	$SYS_madvise, R16
 	SVC	$0x80
-	BCC	2(PC)
-	BL	notok<>(SB)
+	// ignore failure - maybe pages are locked
 	RET
 
 TEXT runtime·setitimer(SB),NOSPLIT,$0
